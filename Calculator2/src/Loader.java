@@ -43,8 +43,8 @@ public class Loader extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        double firstArg = Double.valueOf(field1.getText());
-        double secondArg = Double.valueOf(field2.getText());
+        double firstArg = Double.parseDouble(field1.getText());
+        double secondArg = Double.parseDouble(field2.getText());
 
         switch (((JButton) e.getSource()).getActionCommand()) {
             case "+":
