@@ -18,25 +18,18 @@ public class Main {
     }
 
     public static String getOutputMessage(Long sizeOfFiles, Path startPass) {
-        int b, kb, mb, gb;
-        String bytes = "";
-        String kilobytes = "";
-        String megabytes = "";
-        String gigabytes = "";
-        b = (int) (sizeOfFiles % 1024);
-        kb = (int) (sizeOfFiles / 1024) % 1024;
-        mb = (int) ((sizeOfFiles / 1024) / 1024) % 1024;
-        gb = (int) ((sizeOfFiles / 1024) / 1024 / 1024) % 1024;
-        if (gb != 0) {
-            gigabytes = Integer.toString(gb) + " Gb ";
+        System.out.println(sizeOfFiles);
+        String[] units = new String[]{"b", "kb", "Mb", "Gb"};
+        String[] values = new String[units.length];
+        for (int i = 0; i < values.length; i++) {
+            long tempValue = (long) (sizeOfFiles / Math.pow(1024, i)) % 1024;
+            values[i] = tempValue > 0 ? tempValue + units[i] + " " : "";
         }
-        if (mb != 0) {
-            megabytes = Integer.toString(mb) + " Mb ";
-        }
-        if (kb != 0) {
-            kilobytes = Integer.toString(kb) + " kb ";
-        }
-        bytes = Integer.toString(b) + " bytes";
+        String bytes = values[0];
+        String kilobytes = values[1];
+        String megabytes = values[2];
+        String gigabytes = values[3];
+
         return "Total size of all files in " + startPass + " directory is " + gigabytes + megabytes + kilobytes + bytes;
     }
 }
